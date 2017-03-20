@@ -6,6 +6,8 @@
 
 
 
-<!-- newThreadAllMsgHdrViewOverlay -->
-<!ENTITY newThreadToAll.label "Neu an alle">
+<!-- mainMenuOverlay -->
+<!ENTITY tools_tag_submenu.label "Email-Schlagwörter: Backup/Restore">
+<!ENTITY tools_tag_submenu_backup.label " Backup der Email-Schlagwörter">
+<!ENTITY tools_tag_submenu_restore.label "Restore der Email-Schlagwörter">
 

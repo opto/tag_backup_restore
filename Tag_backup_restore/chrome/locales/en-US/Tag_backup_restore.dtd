@@ -4,5 +4,7 @@
 
 
 
-<!-- newThreadAllMsgHdrViewOverlay -->
-<!ENTITY newThreadToAll.label "New Thread To All">
+<!-- mainMenuOverlay -->
+<!ENTITY tools_tag_submenu.label "email-tags: Backup/Restore">
+<!ENTITY tools_tag_submenu_backup.label " Backup of email-tags">
+<!ENTITY tools_tag_submenu_restore.label "Restore of email-tags">

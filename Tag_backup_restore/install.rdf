@@ -5,7 +5,7 @@
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
   <Description about="urn:mozilla:install-manifest">
-    <em:id>newthreadall@opto.one</em:id>
+    <em:id>tag_backup_restore@opto.one</em:id>
     <em:version>1.0</em:version>
     
     <!-- Target Application this theme can install into, 
@@ -19,8 +19,8 @@
     </em:targetApplication>
     
     <!-- Front End MetaData -->
-    <em:name>New Thread To All</em:name>
-    <em:description>Similiar to 'reply to all', but start a new thread to all with empty subject, body and attachments</em:description>
+    <em:name>Tag Backup and Restore</em:name>
+    <em:description>Backup and restore tags given to emails</em:description>
     <em:creator>opto</em:creator>
 
   </Description>

@@ -1,9 +1,8 @@
-content newthreadall chrome/content/
+content tag_backup_restore chrome/content/
 
-locale newthreadall en-US chrome/locales/en-US/
-locale newthreadall de-DE chrome/locales/de-DE/
+locale tag_backup_restore en-US chrome/locales/en-US/
+locale tag_backup_restore de-DE chrome/locales/de-DE/
 
-resource newthreadall modules/
-overlay chrome://messenger/content/msgHdrViewOverlay.xul chrome://newthreadall/content/newThreadAllMsgHdrViewOverlay.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6}
-overlay chrome://messenger/content/mailWindowOverlay.xul chrome://newthreadall/content/test2pane.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6}
-overlay	chrome://messenger/content/messenger.xul	chrome://newthreadall/content/thunderbirdOverlay.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6}
+resource tag_backup_restore modules/
+
+overlay	chrome://messenger/content/messenger.xul	chrome://tag_backup_restore/content/mainMenuOverlay.xul application={3550f703-e582-4d05-9a08-453d09bdfdc6}

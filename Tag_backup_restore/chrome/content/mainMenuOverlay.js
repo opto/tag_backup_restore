@@ -12,23 +12,6 @@ Components.utils.import("resource:///modules/Services.jsm");
 const {classes: Cc, interfaces: Ci, utils: Cu, results : Cr} = Components;
 Components.utils.import("resource:///modules/gloda/public.js");
 
-//from Protzenko  std-lib
-/**
- * Get a msgHdr from a message URI (msgHdr.URI).
- * @param {String} aUri The URI of the message
- * @return {nsIMsgDbHdr}
- */
-function msgUriToMsgHdr(aUri) {
-alert(aURI);
-  try {
-    let messageService = MailServices.messenger.messageServiceFromURI(aUri);
-    return messageService.messageURIToMsgHdr(aUri);
-  } catch (e) {
-//    dump("Unable to get "+aUri+" — returning null instead");
-    return null;
-  }
-}
-
 
 
  function tagBackup()
@@ -54,7 +37,7 @@ alert(aURI);
 
   onQueryCompleted: function myListener_onQueryCompleted(aCollection) {
 
-//    alert ("completed1");
+
 
  		try {
  //        alert(aCollection.items.length);
@@ -145,14 +128,7 @@ do {
   
   
 
-  //msgHdr=          gFolderDisplay.view.getMsgHdrForMessageID(lines[1])
-//gFolderDisplay.displayedFolder().getMsgDatabase(gFolderDisplay.msgWindow);//.getMsgHdrForMessageID(msg.headerMessageID); 
-//         alert("hdr");alert(msg.headerMessageID);alert(hdr.messageId);
-//msgHdr.setStringProperty("keywords", lines[0]);
 
-//  alert(msgHdr.messageId ,lines[0]);
-//    alert(lines[1]);
-//      alert(lines[2]);
 } while(hasmore);
 
 
