@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay SYSTEM "chrome://nostalgy/locale/nostalgy.dtd">
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+     License, v. 2.0. If a copy of the MPL was not distributed with this file,
+     You can obtain one at http://mozilla.org/MPL/2.0/.-->
+
+
+<overlay id="newThreadAll-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+ <!-- 
+ <script src="misc.js"/>
+ <script src="folders.js"/>
+ <script src="nostalgy_keys.js"/>
+ <script src="sqlite.js"/>
+ <script src="nfpredict.js"/>
+ <script src="nostalgy.js"/>
+ <script src="header_parser.js"/>
+
+ <commandset id="tasksCommands">
+   <command id="cmd_tagBackup" label="tags Backup... Restore"
+     oncommand="alert('tagBackup');"  />
+  </commandset>
+  -->
+
+  <script type="application/javascript"
+          src="chrome://newthreadall/content/thunderbirdOverlay.js"/>
+
+
+ <menupopup id="taskPopup">
+  <menu id="tagBackupMenu"  label = "email-tags Backup/Restore">
+    <menupopup>
+      <menuitem id="tagBackup" label = "email-tags Backup"   oncommand="tagBackup();"/>
+      <menuitem id="tagRestore" label = "email-tags Restore"  oncommand="tagRestore();"/>
+    </menupopup>
+   </menu>
+ </menupopup>
+
+
+<!-- 
+ <keyset id="mailKeys">
+  <key keycode="VK_LEFT" modifiers="control"
+       oncommand="NostalgyScrollMsg(-50);"/>
+  <key keycode="VK_RIGHT" modifiers="control"
+       oncommand="NostalgyScrollMsg(50);"/>
+  <key keycode="VK_LEFT" modifiers="shift"
+       oncommand="NostalgyScrollMsg(-50);"/>
+  <key keycode="VK_RIGHT" modifiers="shift"
+       oncommand="NostalgyScrollMsg(50);"/>
+ </keyset>
+
+
+ <window id="messengerWindow">
+  <statusbar hidden="true" class="chromeclass-status" id="nostalgy-statusbar">
+  <statusbarpanel flex="1">
+   <label id="nostalgy-command-label"/>
+   <textbox id="nostalgy-folderbox" type="autocomplete" tabscrolling="true"
+	   autocompletesearch="nostalgy-autocomplete"
+	   ontextentered="NostalgyRunCommand();"
+	   ontextreverted="NostalgyHide(true);"
+           completeselectedindex="true"
+           highlightnonmatches="true"
+	   flex="1"
+	   maxrows="25" crop="center"
+           />
+  </statusbarpanel>
+  </statusbar>
+ </window>
+
+
+ <statusbar id="status-bar">
+  <hbox id="statusTextBox" insertbefore="statusText">
+   <statusbarpanel insertbefore="statusText">
+    <label id="statusbar-nostalgy-label" crop="center" flex="1"
+           value="&nostalgy.memo;"/>
+   </statusbarpanel>
+  </hbox>
+ </statusbar>
+
+ <menupopup id="quick-search-menupopup" ignorekeys="true"/>
+ 
+ -->
+</overlay>
+
+
