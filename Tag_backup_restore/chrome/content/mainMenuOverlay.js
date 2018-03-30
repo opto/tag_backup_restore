@@ -11,6 +11,7 @@ Components.utils.import("resource:///modules/Services.jsm");
 //Components.utils.import("resource://app/modules/MailUtils.js");
 const {classes: Cc, interfaces: Ci, utils: Cu, results : Cr} = Components;
 Components.utils.import("resource:///modules/gloda/public.js");
+Components.utils.import("resource:///modules/iteratorUtils.jsm"); // for toXPCOMArray
 
 
 
@@ -44,7 +45,7 @@ Components.utils.import("resource:///modules/gloda/public.js");
         let sLen=        aCollection.items.length +'\n';
 
 let path = Components.classes["@mozilla.org/file/directory_service;1"].getService( Components.interfaces.nsIProperties).get("Desk", Components.interfaces.nsIFile).path + "\\";    
-let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile); 
+let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile); 
 
 file.initWithPath(path);
 file.append("TB_tag_backup.txt")                                                   
@@ -94,7 +95,7 @@ if (answer)
   
  let path = Components.classes["@mozilla.org/file/directory_service;1"].getService( Components.interfaces.nsIProperties).get("Desk", Components.interfaces.nsIFile).path + "\\";    
 
-let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile); 
+let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile); 
  
  file.initWithPath(path);
 file.append("TB_tag_backup.txt");
@@ -110,6 +111,8 @@ istream.QueryInterface(Components.interfaces.nsILineInputStream);
 // read lines into array
 let line = {}, lines = [], hasmore, iNoLines, hdrIDs = [];
 var msgTagInfo = [];
+var msgFolderName = [];
+var msgFolderParentName = [];
   hasmore = istream.readLine(line);
 //  alert(line.value) ;
   if (line.value == "TB_tag_backup" ) 
@@ -125,7 +128,8 @@ do {
   lines= line.value.split(";");     
   hdrIDs.push(lines[1]);
   msgTagInfo[lines[1]]  =  lines[0];
-  
+  msgFolderName[lines[1]] = lines[2];
+  msgFolderParentName[lines[1]] = lines[3];  
   
 
 
@@ -148,13 +152,39 @@ do {
   },
 
   onQueryCompleted: function myListener_onQueryCompleted(aCollection) {
-  alert("query");
+  //alert("query");
+  alert(aCollection.items.length);
+  var msgs =Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
+  //var ohdr =Components.classes["@mozilla.org/messenger/msgdbhdr;1"].createInstance(Components.interfaces.nsIMsgDBHdr 	);
+  
         				while(msg=aCollection.items.pop()){
          //       alert(msgTagInfo[msg.headerMessageID]);
-                msg.folderMessage.setStringProperty("keywords", msgTagInfo[msg.headerMessageID]);
+         //alert(msg.folderMessage.folder.name);
+         //alert(msgFolderName[msg.headerMessageID]);
+         //alert("next");
+         //alert(msg.folderMessage.folder.parentMsgFolder.name);
+         //alert(msg.folderMessage.folder.parent.name);
+         alert(msg.folderMessage.messageKey);
+         //alert(msg.folderMessage.folder.hostnamey);
+         //alert (  (msg.folderMessage.folder.GetMessageHeader(msg.folderMessage.messageKey)).messageKey  )
+                 if (msg.folderMessage==null) alert("header null");
+         msgs.clear();
+    //                  ohdr=msg.folderMessage.folder.GetMessageHeader(msg.folderMessage.messageKey);
+     //                 msgs.appendElement(ohdr);
+                      if ((msg.folderMessage.folder.name==msgFolderName[msg.headerMessageID])
+                  && (msg.folderMessage.folder.parent.name==msgFolderParentName[msg.headerMessageID])   )
+                         {
+                          //msg.folderMessage.setStringProperty("keywords", msgTagInfo[msg.headerMessageID]);
+
+                          let msgHdra = toXPCOMArray([msg.folderMessage], Ci.nsIMutableArray);
+                          msg.folderMessage.folder.addKeywordsToMessages(msgHdra, msgTagInfo[msg.headerMessageID]);
+                          msg.folderMessage.folder.msgDatabase = null;
+                                                 } 
 
 }
+alert("finished restoring tags");
   }
+
   
   };
 

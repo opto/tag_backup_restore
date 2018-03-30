@@ -14,7 +14,7 @@
 
 
  <menupopup id="taskPopup">
-  <menu id="tagBackupMenu"  label = "tools_tag_submenu.label">
+  <menu id="tagBackupMenu"  label = "tools_tag_submenu">
     <menupopup>
       <menuitem id="tagBackup" label = "email-tags Backup"   oncommand="tagBackup();"/>
       <menuitem id="tagRestore" label = "email-tags Restore"  oncommand="tagRestore();"/>
