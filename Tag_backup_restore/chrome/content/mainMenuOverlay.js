@@ -22,7 +22,8 @@ Components.utils.import("resource:///modules/iteratorUtils.jsm"); // for toXPCOM
 
   let query = Gloda.newQuery(Gloda.NOUN_MESSAGE);
   let tagArray = MailServices.tags.getAllTags({});
-
+  var noTags = tagArray.length;
+  let snoTags = noTags + '\n';
   query.tags(...tagArray);
  
  let myListener = {
@@ -47,14 +48,16 @@ Components.utils.import("resource:///modules/iteratorUtils.jsm"); // for toXPCOM
 let path = Components.classes["@mozilla.org/file/directory_service;1"].getService( Components.interfaces.nsIProperties).get("Desk", Components.interfaces.nsIFile).path + "\\";    
 let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile); 
 
+//path= path+"TB_tag_backup.txt";
 file.initWithPath(path);
 file.append("TB_tag_backup.txt")                                                   
 if (!file.exists() ) file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 0664) ;
 let outputStream = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance( Components.interfaces.nsIFileOutputStream );
-outputStream.init( file, 0x04 | 0x10, 0664, 0 ); 
+outputStream.init( file, 0x04 | 0x20, 0664, 0 ); //0x20 is truncate,  0x10 is append
         let sProg="TB_tag_backup" +    '\n';
         let result = outputStream.write( sProg, sProg.length );
         result = outputStream.write( sLen, sLen.length );
+        result = outputStream.write( snoTags, snoTags.length );
         				while(msg=aCollection.items.pop()){
 	
 
@@ -86,11 +89,13 @@ let collection = query.getCollection(myListener);
 
 function tagRestore()
 {
-let answer = confirm('Do you want to restore tags to emails?\n\nExisting tags will be removed and overwritten.\n\nBackup of tags must be in file TB_tag_backup on your desktop.\n\nOnly email tags of locally available accounts and folders will be restored.\n\nRestore assumes that both TB installations have same order and name of tags.');
+let answer = confirm('Do you want to restore tags to emails?\n\nExisting tags will stay, new tags will be added.\n\nBackup of tags must be in file TB_tag_backup on your desktop.\n\If email does not exist in this TB, it will be ignored.\n\nRestore assumes that both TB installations have same order and name of tags.\n\n Number of tags in this TB must be equal or larger than in source-TB');
 
 if (answer)
 {
  /*	*/	
+ let tagArray = MailServices.tags.getAllTags({});
+ var noTagsInTB2 = tagArray.length;
 
   
  let path = Components.classes["@mozilla.org/file/directory_service;1"].getService( Components.interfaces.nsIProperties).get("Desk", Components.interfaces.nsIFile).path + "\\";    
@@ -122,7 +127,15 @@ hasmore=  istream.readLine(line);
 let iNoLines= parseInt(line.value);
 alertMsg="Restoring " +  iNoLines + " tags" ;
 alert(alertMsg);
-
+hasmore=  istream.readLine(line);
+let iNoTagsInTB1= parseInt(line.value);
+if (iNoTagsInTB1 > noTagsInTB2) 
+{
+  alertMsg= "number of defined tags in source-TB is larger than number of tags in this TB.\n\nRequired number of tags: " + NoTagsInTB1;
+  alert(alertMsg);
+  //alert(iNoTagsInTB1);
+  return;
+}
 do {
   hasmore = istream.readLine(line);
   lines= line.value.split(";");     
@@ -153,22 +166,21 @@ do {
 
   onQueryCompleted: function myListener_onQueryCompleted(aCollection) {
   //alert("query");
-  alert(aCollection.items.length);
-  var msgs =Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
-  //var ohdr =Components.classes["@mozilla.org/messenger/msgdbhdr;1"].createInstance(Components.interfaces.nsIMsgDBHdr 	);
+  //alert(aCollection.items.length);
+  //var msgs =Components.classes["@mozilla.org/array;1"].createInstance(Components.interfaces.nsIMutableArray);
   
         				while(msg=aCollection.items.pop()){
-         //       alert(msgTagInfo[msg.headerMessageID]);
+         //alert(msgTagInfo[msg.headerMessageID]);
          //alert(msg.folderMessage.folder.name);
          //alert(msgFolderName[msg.headerMessageID]);
          //alert("next");
          //alert(msg.folderMessage.folder.parentMsgFolder.name);
          //alert(msg.folderMessage.folder.parent.name);
-         alert(msg.folderMessage.messageKey);
+         ////alert(msg.folderMessage.messageKey);
          //alert(msg.folderMessage.folder.hostnamey);
          //alert (  (msg.folderMessage.folder.GetMessageHeader(msg.folderMessage.messageKey)).messageKey  )
                  if (msg.folderMessage==null) alert("header null");
-         msgs.clear();
+ //        msgs.clear();
     //                  ohdr=msg.folderMessage.folder.GetMessageHeader(msg.folderMessage.messageKey);
      //                 msgs.appendElement(ohdr);
                       if ((msg.folderMessage.folder.name==msgFolderName[msg.headerMessageID])
