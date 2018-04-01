@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE overlay SYSTEM "chrome://nostalgy/locale/nostalgy.dtd">
+<!DOCTYPE overlay SYSTEM "chrome://tag_backup_restore/locale/tag_backup_restore.dtd">
 <!-- This Source Code Form is subject to the terms of the Mozilla Public
      License, v. 2.0. If a copy of the MPL was not distributed with this file,
      You can obtain one at http://mozilla.org/MPL/2.0/.-->
@@ -14,10 +14,10 @@
 
 
  <menupopup id="taskPopup">
-  <menu id="tagBackupMenu"  label = "tools_tag_submenu">
+  <menu id="tagBackupMenu"  label = "&tools_tag_submenu.label;">
     <menupopup>
-      <menuitem id="tagBackup" label = "email-tags Backup"   oncommand="tagBackup();"/>
-      <menuitem id="tagRestore" label = "email-tags Restore"  oncommand="tagRestore();"/>
+      <menuitem id="tagBackup" label = "&tools_tag_submenu_backup.label;"   oncommand="tagBackup();"/>
+      <menuitem id="tagRestore" label = "&tools_tag_submenu_restore.label;"  oncommand="tagRestore();"/>
     </menupopup>
    </menu>
  </menupopup>

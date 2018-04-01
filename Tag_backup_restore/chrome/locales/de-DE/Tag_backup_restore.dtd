@@ -7,7 +7,7 @@
 
 
 <!-- mainMenuOverlay -->
-<!ENTITY tools_tag_submenu.label "Email-Schlagwörter: Backup/Restore">
-<!ENTITY tools_tag_submenu_backup.label " Backup der Email-Schlagwörter">
-<!ENTITY tools_tag_submenu_restore.label "Restore der Email-Schlagwörter">
+<!ENTITY tools_tag_submenu.label "Email-Schlagwoerter: Backup/Restore">
+<!ENTITY tools_tag_submenu_backup.label " Backup der Email-Schlagwoerter">
+<!ENTITY tools_tag_submenu_restore.label "Restore der Email-Schlagwoerter">
 
