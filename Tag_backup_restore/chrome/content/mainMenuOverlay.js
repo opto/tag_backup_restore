@@ -58,12 +58,24 @@ outputStream.init( file, 0x04 | 0x20, 0664, 0 ); //0x20 is truncate,  0x10 is ap
         let result = outputStream.write( sProg, sProg.length );
         result = outputStream.write( sLen, sLen.length );
         result = outputStream.write( snoTags, snoTags.length );
-        				while(msg=aCollection.items.pop()){
+//        				while(msg=aCollection.items.pop())
+let  ausg="";
+       for (var i = 0; i <aCollection.items.length; i++) 
+                {
 	
-
+             let msg=   aCollection.items[i];
+             if (msg.folderMessage!=null)
+             {
           let tagList=  msg.folderMessage.getStringProperty("keywords");
-          let ausg=   tagList  + ';' +  msg.headerMessageID + ';' +    msg.folderMessage.folder.name + ';'  +   msg.folderMessage.folder.parent.name + ';\n' ;
+           ausg=   tagList  + ';' +  msg.headerMessageID + ';' +    msg.folderMessage.folder.name + ';'  +   msg.folderMessage.folder.parent.name + ';\n' ;
 //          alert (ausg);
+}
+else
+{
+           ausg=   'foldermessage null'  + ';' +  msg.headerMessageID + ';' +    msg.messageKey+   ';' + msg.folderURI +';' + msg._isDeleted + 
+                        ';' + msg.subject + '\n' ;
+
+}
  result = outputStream.write( ausg, ausg.length );
  if (!result) alert("File with email tags could not be written");
 
