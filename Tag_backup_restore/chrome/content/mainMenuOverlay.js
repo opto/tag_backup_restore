@@ -6,12 +6,15 @@
 
  
 //Components.utils.import("resource:///modules/StringBundle.js");
-Components.utils.import("resource:///modules/Services.jsm");
+//const { Services } = 
+ChromeUtils.import("resource:///modules/Services.jsm", null);
 //Components.utils.import("resource:///modules/gloda/indexer.js");
 //Components.utils.import("resource://app/modules/MailUtils.js");
 const {classes: Cc, interfaces: Ci, utils: Cu, results : Cr} = Components;
-Components.utils.import("resource:///modules/gloda/public.js");
-Components.utils.import("resource:///modules/iteratorUtils.jsm"); // for toXPCOMArray
+//const { Gloda } = 
+ChromeUtils.import("resource:///modules/gloda/public.js");
+//const { iteratorUtils } = 
+ChromeUtils.import("resource:///modules/iteratorUtils.jsm"); // for toXPCOMArray
 
 
 
@@ -44,6 +47,7 @@ Components.utils.import("resource:///modules/iteratorUtils.jsm"); // for toXPCOM
  		try {
  //        alert(aCollection.items.length);
         let sLen=        aCollection.items.length +'\n';
+        alert(sLen);
 
 let path = Components.classes["@mozilla.org/file/directory_service;1"].getService( Components.interfaces.nsIProperties).get("Desk", Components.interfaces.nsIFile).path + "\\";    
 let file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsIFile); 
