@@ -11,9 +11,9 @@ ChromeUtils.import("resource:///modules/Services.jsm");
 //Components.utils.import("resource:///modules/gloda/indexer.js");
 //Components.utils.import("resource://app/modules/MailUtils.js");
 //const {classes: Cc, interfaces: Ci, utils: Cu, results : Cr} = Components;
-//const { Gloda } = 
+var { Gloda } = 
 ChromeUtils.import("resource:///modules/gloda/public.js");
-//const { iteratorUtils } = 
+var { iteratorUtils } = 
 ChromeUtils.import("resource:///modules/iteratorUtils.jsm"); // for toXPCOMArray
 
 
