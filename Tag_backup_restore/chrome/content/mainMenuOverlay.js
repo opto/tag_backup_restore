@@ -6,11 +6,11 @@
 
  
 //Components.utils.import("resource:///modules/StringBundle.js");
-//const { Services } = 
-ChromeUtils.import("resource:///modules/Services.jsm", null);
+var { Services } = 
+ChromeUtils.import("resource:///modules/Services.jsm");
 //Components.utils.import("resource:///modules/gloda/indexer.js");
 //Components.utils.import("resource://app/modules/MailUtils.js");
-const {classes: Cc, interfaces: Ci, utils: Cu, results : Cr} = Components;
+//const {classes: Cc, interfaces: Ci, utils: Cu, results : Cr} = Components;
 //const { Gloda } = 
 ChromeUtils.import("resource:///modules/gloda/public.js");
 //const { iteratorUtils } = 
@@ -71,8 +71,12 @@ let  ausg="";
              if (msg.folderMessage!=null)
              {
           let tagList=  msg.folderMessage.getStringProperty("keywords");
-           ausg=   tagList  + ';' +  msg.headerMessageID + ';' +    msg.folderMessage.folder.name + ';'  +   msg.folderMessage.folder.parent.name + ';\n' ;
-//          alert (ausg);
+           ausg=   tagList  + ';' +  msg.headerMessageID + ';' +    msg.messageKey+   ';'    + msg.account +';' + msg.folderURI +';' + msg._isDeleted + 
+                        ';' + msg.subject +      ';'   +   msg.folderMessage.folder.name + ';'  +   msg.folderMessage.folder.parent.name
+                                   + ';\n' ;
+//          alert (ausg);     
+//';' +    msg.messageKey+   ';' + msg.folderURI +';' + msg._isDeleted + 
+ //                       ';' + msg.subject +      ';'  +   msg.folderMessage.folder.parent.parent.name 
 }
 else
 {
