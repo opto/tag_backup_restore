@@ -1,0 +1,18 @@
+{
+	"manifest_version": 2,
+	"name": "Tag Backup and Restore",
+  "description": "Backup and restore tags given to emails",
+	"version": "3.0",
+	"author": "opto",
+	"developer": {
+		"name": "Klaus Buecher"
+	},
+  "legacy": true,
+  
+	"applications": {
+		"gecko": {
+			"id": "tag_backup_restore@opto.one",
+			"strict_min_version": "68.0"
+		}
+	}
+}
