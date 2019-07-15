@@ -1,16 +1,12 @@
-New Thread To All
-=========================
+Backup stores info of emails tags and email folders to a file on the desktop. This file can be used to restore the tags to another instance 
+of Thunderbird.
 
-If you typically always have the same email recipient lists for your projects, this button may be the right thing for you.
-It creates a new mail compose window with to, cc, bcc filled with names from the currently viewed email, but starting a new thread.
+Attention: the file is not encrypted, other users of the PC may see which emails you have tagged.
 
+Restore checks that in destination-TB, equal or more tags are defined than in source-TB. It does not check
+names or colours of the tags.
 
-Previously: Instead of compiling a new recipients list, we pressed 'reply to all'. 
-Then we changed subject, body, attachments.  Easier than pulling 10 recipients into a new email.
+Only those tags are applied to destination TB, where the corresponding email can be found. For this to work, 
+folderURIs must be identical in both installations.
 
-Drawback: this new email was still part of the same conversation/thread as the old emails. Not desirable, if this new email is starting a 
-new thread for a new project/incident/service question.
-
-Now: just press 'new thread to all'. It will open a compose window with all previous email recipients, but will start a new thread.
-
-
+Use at your own risk or test in a test-profile.
